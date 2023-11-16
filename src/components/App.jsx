@@ -1,4 +1,4 @@
-import Grid from "./Grid.1"
+import Grid from "./Grid"
 const App = () => {
   // eslint-disable-next-line no-unused-vars
   const grid = [
