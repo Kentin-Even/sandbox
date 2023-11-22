@@ -1,24 +1,41 @@
+// eslint-disable-next-line no-unused-vars
+import WhitePieces from "./WhitePieces"
+import BlackPieces from "./BlackPieces"
 const Grid = () => {
   const grid = [
-    "", "", "", "", "", "", "", "",
-    "", "", "", "", "", "", "", "",
-    "", "", "", "", "", "", "", "",
-    "", "", "", "", "", "", "", "",
-    "", "", "", "", "", "", "", "",
-    "", "", "", "", "", "", "", "",
-    "", "", "", "", "", "", "", "",
-    "", "", "", "", "", "", "", "",
+    [{WhitePieces.}, "cavalier", "fou", "dame", "roi", "fou", "cavalier", "tour"],
+    ["pion", "pion", "pion", "pion", "pion", "pion", "pion", "pion"],
+    ["", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", "", ""],
+    ["pion", "pion", "pion", "pion", "pion", "pion", "pion", "pion"],
+    ["tour", "cavalier", "fou", "dame", "roi", "fou", "cavalier", "tour"]
   ]
-  const isWhite = (index) => (Math.floor(index / 8) % 2 === index % 2)
+  const isWhite = (lineIndex, squareIndex) => {
+    const isLineEven = lineIndex % 2 === 0
+    const isSquareEven = squareIndex % 2 === 0
+
+    return isLineEven === isSquareEven ? "bg-white" : "bg-slate-400"
+  }
 
   return (
-    <div className="p-4 flex flex-col gap-4 h-screen justify-center items-center">
-      <div className="flex flex-wrap w-80 h-80 box-content">
-        {grid.map((_,index) => (
-          <button
-          key={index}
-          className={`w-10 h-10 border ${isWhite(index) ? "bg-white" : "bg-black"} active:bg-slate-200`} 
-          ></button>
+    <div className="justify-center flex items-center h-screen">
+      <div>
+        {grid.map((lines, lineIndex) => (
+          <div className="flex" key={lineIndex}>
+            {lines.map((square, squareIndex) => (
+              <div
+                className={`w-20 h-20 border ${isWhite(
+                  lineIndex + 1,
+                  squareIndex + 1
+                )}`}
+                key={squareIndex}>
+                {square}
+                {}
+              </div>
+            ))}
+          </div>
         ))}
       </div>
     </div>
