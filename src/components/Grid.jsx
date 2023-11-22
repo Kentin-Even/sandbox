@@ -1,26 +1,22 @@
+// eslint-disable-next-line no-unused-vars
+import WhitePieces from "./WhitePieces"
+import BlackPieces from "./BlackPieces"
 const Grid = () => {
   const grid = [
-    ["tour", "cavalier", "fou", "", "", "", "", ""],
+    [{WhitePieces.}, "cavalier", "fou", "dame", "roi", "fou", "cavalier", "tour"],
+    ["pion", "pion", "pion", "pion", "pion", "pion", "pion", "pion"],
     ["", "", "", "", "", "", "", ""],
     ["", "", "", "", "", "", "", ""],
     ["", "", "", "", "", "", "", ""],
     ["", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", ""]
+    ["pion", "pion", "pion", "pion", "pion", "pion", "pion", "pion"],
+    ["tour", "cavalier", "fou", "dame", "roi", "fou", "cavalier", "tour"]
   ]
   const isWhite = (lineIndex, squareIndex) => {
     const isLineEven = lineIndex % 2 === 0
     const isSquareEven = squareIndex % 2 === 0
-    console.log(lineIndex)
-    
-    if (isLineEven && isSquareEven) {
-      return "bg-white"
-    } else if (!isLineEven && !isSquareEven) {
-      return "bg-black"
-    }
 
-    return ""
+    return isLineEven === isSquareEven ? "bg-white" : "bg-slate-400"
   }
 
   return (
@@ -30,10 +26,13 @@ const Grid = () => {
           <div className="flex" key={lineIndex}>
             {lines.map((square, squareIndex) => (
               <div
-                className={`w-10 h-10 border ${
-                  isWhite(lineIndex + 1, squareIndex + 1) ? "bg-white" : "bg-black"
-                }`}
-                key={squareIndex}> {square}
+                className={`w-20 h-20 border ${isWhite(
+                  lineIndex + 1,
+                  squareIndex + 1
+                )}`}
+                key={squareIndex}>
+                {square}
+                {}
               </div>
             ))}
           </div>
